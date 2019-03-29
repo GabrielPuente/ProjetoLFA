@@ -1,0 +1,7 @@
+C:\Users\Gabriel Puente\Documents\Facens\LFA\ProjetoLFA\Projeto1\Projeto1\bin\Debug\Projeto1.exe.config
+C:\Users\Gabriel Puente\Documents\Facens\LFA\ProjetoLFA\Projeto1\Projeto1\bin\Debug\Projeto1.exe
+C:\Users\Gabriel Puente\Documents\Facens\LFA\ProjetoLFA\Projeto1\Projeto1\bin\Debug\Projeto1.pdb
+C:\Users\Gabriel Puente\Documents\Facens\LFA\ProjetoLFA\Projeto1\Projeto1\obj\Debug\Projeto1.csprojAssemblyReference.cache
+C:\Users\Gabriel Puente\Documents\Facens\LFA\ProjetoLFA\Projeto1\Projeto1\obj\Debug\Projeto1.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel Puente\Documents\Facens\LFA\ProjetoLFA\Projeto1\Projeto1\obj\Debug\Projeto1.exe
+C:\Users\Gabriel Puente\Documents\Facens\LFA\ProjetoLFA\Projeto1\Projeto1\obj\Debug\Projeto1.pdb
