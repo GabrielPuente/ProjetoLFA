@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Afd.cs" />
-    <Compile Include="DATA STRUCTURE\Edge.cs" />
-    <Compile Include="DATA STRUCTURE\Graph.cs" />
-    <Compile Include="DATA STRUCTURE\Node.cs" />
+    <Compile Include="graph\Edge.cs" />
+    <Compile Include="graph\Graph.cs" />
+    <Compile Include="graph\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

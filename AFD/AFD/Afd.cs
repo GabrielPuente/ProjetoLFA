@@ -1,4 +1,4 @@
-﻿using Projeto2_LFA.DATA_STRUCTURE;
+﻿using Projeto2_LFA.graph;
 using System;
 
 namespace AFD
@@ -7,37 +7,79 @@ namespace AFD
     {
         public static void Main(string[] args)
         {
-            Graph graph = new Graph();
-            string exp = Console.ReadLine() + "#";
-            string aux = "", inicial = " inicial", final = " final";
-            bool isOr = false;
+            string op = string.Empty;
+            do
+            {
+                Console.WriteLine("Insira a expressao ou 'Q' para fechar");
+                op = Console.ReadLine();
 
+                if (op.Equals("Q"))
+                    break;
+
+                Expressao(op);
+                Console.WriteLine("\n\n\nPara limpar a tela 'C' para fechar 'Q' ");
+                op = Console.ReadLine();
+                Console.Clear();
+
+            } while (!op.Equals("Q"));
+        }
+
+        #region Show Grapf
+        /// <summary>
+        /// Exibir o grafo no console
+        /// </summary>
+        /// <param name="graph">Grafo</param>
+        public static void ShowGrapf(Graph graph)
+        {
+            foreach (var node in graph.nodes)
+            {
+                foreach (var edge in node.Edges)
+                {
+                    Console.WriteLine($"{edge.From} --> {edge.To}");
+                }
+            }
+        }
+
+        #endregion
+
+        #region Expressao
+        /// <summary>
+        /// Expressao insida
+        /// </summary>
+        /// <param name="exp">Expressao</param>
+        public static void Expressao(string exp)
+        {
+            Graph graph = new Graph();
+            exp += "#";
+            string aux = "", inicial = " inicial", final = " final";
             foreach (var item in exp)
             {
-                if (item == '|')
+                switch (item)
                 {
-                    graph.AddExp(aux + inicial, aux + final, aux, isOr);
-                    isOr = true;
-                    aux = "";
-                }
-                else if (item == '.')
-                {
-                    graph.AddExp(aux + inicial, aux + final, aux, isOr);
-                    isOr = false;
-                    aux = "";
-                }
-                else if (item == '#')
-                {
-                    graph.AddExp(aux + inicial, aux + final, aux, isOr);
-                    isOr = false;
-                    aux = "";
-                }
-                else
-                    aux += item;
-            }
-            graph.DefineFinalNode();
+                    case '|':
+                        graph.AddExp(aux + inicial, aux + final, aux, true);
+                        aux = "";
+                        break;
 
-            Console.ReadLine();
+                    case '.':
+                        graph.AddExp(aux + inicial, aux + final, aux);
+                        aux = "";
+                        break;
+
+                    case '#':
+                        graph.AddExp(aux + inicial, aux + final, aux);
+                        aux = "";
+                        break;
+
+                    default:
+                        aux += item;
+                        break;
+                }
+            }
+            graph.DefineDestinoNode();
+            ShowGrapf(graph);
         }
+
+        #endregion
     }
 }

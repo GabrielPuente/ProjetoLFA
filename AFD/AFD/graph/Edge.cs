@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Projeto2_LFA.DATA_STRUCTURE
+namespace Projeto2_LFA.graph
 {
-    class Edge
+    public class Edge
     {
-
         #region Propriedades
 
         /// <summary>

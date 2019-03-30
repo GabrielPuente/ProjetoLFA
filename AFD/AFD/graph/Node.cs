@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Projeto2_LFA.DATA_STRUCTURE
+namespace Projeto2_LFA.graph
 {
-    class Node
+    public class Node
     {
         #region Propriedades
         /// <summary>
