@@ -78,7 +78,7 @@ namespace Projeto2_LFA.graph
 
             Edge e = new Edge(from, to, cost);
 
-            from.AddEdge(to, "");
+            from.AddEdge(to, cost);
             edges.Add(e);
 
         }
@@ -87,7 +87,7 @@ namespace Projeto2_LFA.graph
 
         #region Add Exp
         /// <summary>
-        /// Adiciona a expressao no grafo
+        /// Adiciona a expressao no grafo com tipo or
         /// </summary>
         /// <param name="origem">Nome do no origem</param>
         /// <param name="destino">Nome origem</param>
@@ -106,17 +106,17 @@ namespace Projeto2_LFA.graph
             }
             else
             {
-                Node aux = this.nodes.Last();
+                Node node = this.nodes.Last();
                 this.AddNode(origem);
-                this.AddEdge(aux.Name, origem, "&");
+                this.AddEdge(node.Name, origem, "&");
                 this.AddNode(destino);
                 this.AddEdge(origem, destino, custo);
                 this.AddNode("Q" + this.qCount);
                 this.AddEdge(destino, "Q" + this.qCount, "&");
                 this.qCount++;
-                if(isOr)
+                if (isOr)
                 {
-                    iniOr = aux;
+                    iniOr = node;
                     finOr = this.nodes.Last();
                     isOrExpression = true;
                 }
@@ -142,9 +142,9 @@ namespace Projeto2_LFA.graph
             }
             else
             {
-                Node aux = this.nodes.Last();
+                Node node = this.nodes.Last();
                 this.AddNode(origem);
-                this.AddEdge(aux.Name, origem, "&");
+                this.AddEdge(node.Name, origem, "&");
                 this.AddNode(destino);
                 this.AddEdge(origem, destino, custo);
                 this.AddNode("Q" + this.qCount);
@@ -154,21 +154,57 @@ namespace Projeto2_LFA.graph
         }
         #endregion
 
-        #region Define destino Node
+        #region Add Exp Mais
+        /// <summary>
+        /// Adiciona a expressao no grafo mais
+        /// </summary>
+        /// <param name="origem">Nome do no origem</param>
+        /// <param name="destino">Nome origem</param>
+        /// <param name="custo">no destino</param>
+        public void AddExpMais(string origem, string destino, string custo)
+        {
+            Node node = this.nodes.Last();
+            this.AddNode(origem);
+            this.AddEdge(node.Name, origem, "&");
+            this.AddNode(destino);
+            this.AddEdge(origem, destino, custo);
+            this.AddEdge(destino, origem, "&");
+            this.AddNode("Q" + this.qCount);
+            this.AddEdge(destino, "Q" + this.qCount, "&");
+            this.qCount++;
+        }
+        #endregion
+
+        #region Add Exp Cline
+        public void AddExpCline(string origem, string destino, string custo)
+        {
+            Node node = this.nodes.Last();
+            this.AddNode(origem);
+            this.AddNode(destino);
+            this.AddNode("Q" + this.qCount);
+            this.AddEdge(node.Name, "Q" + this.qCount, "&");
+            this.AddEdge(node.Name, origem, "&");
+            this.AddEdge(origem, destino, custo);
+            this.AddEdge(destino, origem, "&");
+            this.AddEdge(destino, "Q" + this.qCount, "&");
+            this.qCount++;
+        }
+        #endregion
+
+        #endregion
+
+        #region Define final Node
         /// <summary>
         /// Seta no como final do grafo
         /// </summary>
-        public void DefineDestinoNode()
+        public void DefineFinalNode()
         {
-            foreach(Node node in this.nodes)
-            {
-                if(node.Edges.Count == 0)
-                {
-                    node.isFinal = true;
-                }
-            }            
+            var node = this.nodes.Find(u => u.Edges.Count == 0);
+            if (node != null)
+                node.isFinal = true;
+            else
+                this.nodes.Last().isFinal = true;
         }
-
         #endregion
 
         #region Find
@@ -188,8 +224,6 @@ namespace Projeto2_LFA.graph
             }
             return null;
         }
-
-        #endregion
 
         #endregion
     }
